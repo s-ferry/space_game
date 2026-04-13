@@ -3,7 +3,7 @@ class_name Player extends CharacterBody2D
 signal laser_shot(laser)
 signal died
 
-@export var acceleration := 10.0
+@export var acceleration := 11.0
 @export var max_speed := 350.0
 @export var rotation_speed := 250.0
 
@@ -18,7 +18,7 @@ var rate_of_fire = 0.15
 
 var alive := true
 
-func _process(delta):
+func _process(_delta):
 	if !alive: return
 	
 	if Input.is_action_pressed("shoot"):
@@ -42,7 +42,7 @@ func _physics_process(delta):
 		rotate(deg_to_rad(-rotation_speed*delta))
 	
 	if input_vector.y == 0:
-		velocity = velocity.move_toward(Vector2.ZERO, 3)
+		velocity = velocity.move_toward(Vector2.ZERO, 4)
 	
 	move_and_slide()
 	

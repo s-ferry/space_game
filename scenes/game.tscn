@@ -1,120 +1,399 @@
-[gd_scene load_steps=13 format=3 uid="uid://7f1k0tsx7cnx"]
+[gd_scene format=3 uid="uid://7f1k0tsx7cnx"]
 
-[ext_resource type="Script" path="res://scripts/game.gd" id="1_ci0lx"]
+[ext_resource type="Script" uid="uid://83etgvibgd1f" path="res://scripts/game.gd" id="1_ci0lx"]
 [ext_resource type="PackedScene" uid="uid://1wnfmblulhx0" path="res://scenes/player.tscn" id="1_lp7mr"]
 [ext_resource type="PackedScene" uid="uid://cyg1avbtmwoj7" path="res://scenes/hud.tscn" id="2_g7hwg"]
 [ext_resource type="PackedScene" uid="uid://bh1r82178c2u1" path="res://scenes/asteroid.tscn" id="3_6btt6"]
 [ext_resource type="PackedScene" uid="uid://dwwjje64opjab" path="res://scenes/game_over_screen.tscn" id="3_km7re"]
+[ext_resource type="Script" uid="uid://f3yc8ce0yhip" path="res://scripts/start_menu.gd" id="4_dinhu"]
+[ext_resource type="Texture2D" uid="uid://dn78vqty6wh0m" path="res://Space-Free-PNG-Image.png" id="4_kvpfn"]
+[ext_resource type="FontFile" uid="uid://c8bymw6is4rfv" path="res://assets/font/Kenney Blocks.ttf" id="5_dinhu"]
 [ext_resource type="PackedScene" uid="uid://bxpqhkwbma8la" path="res://scenes/player_spawn_area.tscn" id="6_kp4kv"]
-[ext_resource type="AudioStream" uid="uid://d3r58unnfcojo" path="res://assets/audio/sfx_laser1.wav" id="7_ymdea"]
-[ext_resource type="AudioStream" uid="uid://yu1ff4h0rwa2" path="res://assets/audio/hit.wav" id="8_p30em"]
-[ext_resource type="AudioStream" uid="uid://ddiy12b6ukf4n" path="res://assets/audio/explode.wav" id="9_x64l8"]
+[ext_resource type="AudioStream" uid="uid://r1q77akmsud0" path="res://assets/audio/sfx_laser1.wav" id="7_ymdea"]
+[ext_resource type="AudioStream" uid="uid://gi3kgc3x11cd" path="res://assets/audio/hit.wav" id="8_p30em"]
+[ext_resource type="AudioStream" uid="uid://dm570camat62e" path="res://assets/audio/explode.wav" id="9_x64l8"]
+[ext_resource type="AudioStream" uid="uid://b8nypvo06yljn" path="res://assets/audio/purrsahfef-8-bit-space-123218.mp3" id="12_trtic"]
+[ext_resource type="AudioStream" uid="uid://td8xahyyxa1i" path="res://assets/audio/absounds-neon-retro-80s-synthwave-272825.mp3" id="13_ir15t"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kvuet"]
+texture = ExtResource("4_kvpfn")
+modulate_color = Color(0.5716493, 0.5716493, 0.57164925, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0tnpc"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dinhu"]
+bg_color = Color(0.37917963, 0.37917987, 0.37917975, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kvuet"]
+bg_color = Color(0.6996537, 0.6996534, 0.69965357, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kvpfn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vtaks"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kvpfn"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 12
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_trtic"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6ya6y"]
+particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(1, 360, 1)
-particle_flag_disable_z = true
 spread = 0.0
-gravity = Vector3(0, 0, 0)
 initial_velocity_min = -10.0
 initial_velocity_max = -10.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, 0, 0)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qn0gc"]
+particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(1, 360, 1)
-particle_flag_disable_z = true
 spread = 0.0
-gravity = Vector3(0, 0, 0)
 initial_velocity_min = -20.0
 initial_velocity_max = -20.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, 0, 0)
 scale_min = 3.0
 scale_max = 3.0
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ws6fu"]
+particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(1, 360, 1)
-particle_flag_disable_z = true
 spread = 0.0
-gravity = Vector3(0, 0, 0)
 initial_velocity_min = -30.0
 initial_velocity_max = -30.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, 0, 0)
 scale_min = 5.0
 scale_max = 5.0
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" unique_id=1801750805]
 script = ExtResource("1_ci0lx")
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=410352273]
+wait_time = 60.0
+one_shot = true
 
-[node name="HUD" parent="UI" instance=ExtResource("2_g7hwg")]
+[node name="UI" type="CanvasLayer" parent="." unique_id=165334224]
 
-[node name="GameOverScreen" parent="UI" instance=ExtResource("3_km7re")]
+[node name="HUD" parent="UI" unique_id=1261552616 instance=ExtResource("2_g7hwg")]
+
+[node name="TimerLabel" type="Label" parent="UI/HUD" unique_id=52101351]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 871.0
+offset_top = 19.0
+offset_right = 1668.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_dinhu")
+theme_override_font_sizes/font_size = 45
+text = "Time left: 60"
+
+[node name="GameOverScreen" parent="UI" unique_id=1458280582 instance=ExtResource("3_km7re")]
 visible = false
 
-[node name="BackgroundStarFields" type="Node2D" parent="."]
+[node name="StartMenu" type="Control" parent="UI" unique_id=1678950227]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+script = ExtResource("4_dinhu")
 
-[node name="StarFieldBack" type="GPUParticles2D" parent="BackgroundStarFields"]
+[node name="Background" type="Panel" parent="UI/StartMenu" unique_id=567406572]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_kvuet")
+
+[node name="Title" type="Label" parent="UI/StartMenu" unique_id=1260741738]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -257.0
+offset_top = -147.0
+offset_right = 257.0
+offset_bottom = -71.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_constants/shadow_offset_y = -3
+theme_override_fonts/font = ExtResource("5_dinhu")
+theme_override_font_sizes/font_size = 50
+text = "Pysche Approach"
+horizontal_alignment = 1
+
+[node name="Facts" type="Label" parent="UI/StartMenu" unique_id=921484020]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 72.0
+offset_right = 1090.0
+offset_bottom = 208.0
+theme_override_fonts/font = ExtResource("5_dinhu")
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="StartButtons" type="VBoxContainer" parent="UI/StartMenu" unique_id=194304112]
+z_index = 10
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -142.875
+offset_top = -121.0
+offset_right = 142.875
+offset_bottom = 315.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="StartButton" type="Button" parent="UI/StartMenu/StartButtons" unique_id=801697376]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_dinhu")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_0tnpc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dinhu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kvuet")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kvpfn")
+text = "Start"
+
+[node name="FactButton" type="Button" parent="UI/StartMenu/StartButtons" unique_id=1540227566]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_dinhu")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_vtaks")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dinhu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kvuet")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kvpfn")
+text = "Cool Fact!"
+
+[node name="Tutorial" type="Button" parent="UI/StartMenu/StartButtons" unique_id=1789027215]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_dinhu")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_vtaks")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dinhu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kvuet")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kvpfn")
+text = "Tutorial"
+
+[node name="Quit" type="Button" parent="UI/StartMenu/StartButtons" unique_id=1221519762]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_dinhu")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_kvpfn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dinhu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kvuet")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kvpfn")
+text = "Quit"
+
+[node name="TutorialControl" type="Control" parent="UI/StartMenu" unique_id=1681037801]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="LoreTitle" type="Label" parent="UI/StartMenu/TutorialControl" unique_id=1164677039]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -273.0
+offset_top = -212.5
+offset_right = 273.0
+offset_bottom = -45.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_dinhu")
+theme_override_font_sizes/font_size = 59
+text = "SAVING PSYCHE"
+
+[node name="LorePrompt" type="Label" parent="UI/StartMenu/TutorialControl" unique_id=596954528]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -492.0
+offset_top = -3392.5
+offset_right = 492.0
+offset_bottom = 3444.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_dinhu")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxEmpty_trtic")
+text = "            the psyche space craft moves through space 
+but has ran into electrical issues. YOU must pilot 
+the shuttle and ensure the team's safety and harvest asteroids while they 
+repair the shuttle to make it back home!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="Controls" type="Label" parent="UI/StartMenu/TutorialControl" unique_id=1834967161]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -444.0
+offset_top = 183.0
+offset_right = 444.0
+offset_bottom = 207.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_dinhu")
+text = "Use WASD to pilot PSYCHE, and SPACE BAR to use the mining tool to harvest asteroids!"
+
+[node name="Back" type="Button" parent="UI/StartMenu/TutorialControl" unique_id=56515381]
+layout_mode = 0
+offset_left = -138.0
+offset_top = 261.0
+offset_right = 144.0
+offset_bottom = 307.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_dinhu")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_kvpfn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dinhu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kvuet")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kvpfn")
+text = "Back"
+
+[node name="BackgroundStarFields" type="Node2D" parent="." unique_id=191290205]
+
+[node name="StarFieldBack" type="GPUParticles2D" parent="BackgroundStarFields" unique_id=493407476]
 z_index = -100
 position = Vector2(1308, 360)
 amount = 1000
-process_material = SubResource("ParticleProcessMaterial_6ya6y")
 lifetime = 140.0
 preprocess = 280.0
+process_material = SubResource("ParticleProcessMaterial_6ya6y")
 
-[node name="StarFieldMiddle" type="GPUParticles2D" parent="BackgroundStarFields"]
+[node name="StarFieldMiddle" type="GPUParticles2D" parent="BackgroundStarFields" unique_id=453817571]
 z_index = -95
 position = Vector2(1308, 360)
 amount = 250
-process_material = SubResource("ParticleProcessMaterial_qn0gc")
 lifetime = 140.0
 preprocess = 280.0
+process_material = SubResource("ParticleProcessMaterial_qn0gc")
 
-[node name="StarFieldFront" type="GPUParticles2D" parent="BackgroundStarFields"]
+[node name="StarFieldFront" type="GPUParticles2D" parent="BackgroundStarFields" unique_id=315309772]
 z_index = -90
 position = Vector2(1308, 360)
 amount = 30
-process_material = SubResource("ParticleProcessMaterial_ws6fu")
 lifetime = 140.0
 preprocess = 280.0
+process_material = SubResource("ParticleProcessMaterial_ws6fu")
 
-[node name="Lasers" type="Node" parent="."]
+[node name="Lasers" type="Node" parent="." unique_id=13772830]
 
-[node name="Asteroids" type="Node" parent="."]
+[node name="Asteroids" type="Node" parent="." unique_id=1378695025]
 
-[node name="Asteroid" parent="Asteroids" instance=ExtResource("3_6btt6")]
-position = Vector2(396, 244)
+[node name="Asteroid" parent="Asteroids" unique_id=460483091 instance=ExtResource("3_6btt6")]
+visible = false
+position = Vector2(221, 418)
 
-[node name="Asteroid2" parent="Asteroids" instance=ExtResource("3_6btt6")]
-position = Vector2(987, 111)
+[node name="Asteroid2" parent="Asteroids" unique_id=110843765 instance=ExtResource("3_6btt6")]
+visible = false
+position = Vector2(956, 195)
 
-[node name="Asteroid3" parent="Asteroids" instance=ExtResource("3_6btt6")]
-position = Vector2(1033, 445)
+[node name="Asteroid3" parent="Asteroids" unique_id=163531404 instance=ExtResource("3_6btt6")]
+visible = false
+position = Vector2(928, 476)
 
-[node name="Asteroid4" parent="Asteroids" instance=ExtResource("3_6btt6")]
-position = Vector2(263, 615)
+[node name="Asteroid4" parent="Asteroids" unique_id=1308589696 instance=ExtResource("3_6btt6")]
+visible = false
+position = Vector2(581, 575)
 
-[node name="Asteroid5" parent="Asteroids" instance=ExtResource("3_6btt6")]
-position = Vector2(143, 107)
+[node name="Asteroid5" parent="Asteroids" unique_id=1385264927 instance=ExtResource("3_6btt6")]
+visible = false
+position = Vector2(377, 84)
 
-[node name="PlayerSpawnPos" type="Node2D" parent="."]
+[node name="Asteroid6" parent="Asteroids" unique_id=613488920 instance=ExtResource("3_6btt6")]
+visible = false
+position = Vector2(180, 230)
+
+[node name="Asteroid7" parent="Asteroids" unique_id=1339081300 instance=ExtResource("3_6btt6")]
+visible = false
+position = Vector2(1111, 337)
+
+[node name="PlayerSpawnPos" type="Node2D" parent="." unique_id=1366722947]
 position = Vector2(640, 360)
 
-[node name="PlayerSpawnArea" parent="PlayerSpawnPos" instance=ExtResource("6_kp4kv")]
+[node name="PlayerSpawnArea" parent="PlayerSpawnPos" unique_id=1512443177 instance=ExtResource("6_kp4kv")]
+position = Vector2(36, 4)
 
-[node name="LaserSound" type="AudioStreamPlayer" parent="."]
+[node name="LaserSound" type="AudioStreamPlayer" parent="." unique_id=1979342858]
 stream = ExtResource("7_ymdea")
 
-[node name="AsteroidHitSound" type="AudioStreamPlayer" parent="."]
+[node name="AsteroidHitSound" type="AudioStreamPlayer" parent="." unique_id=1664581786]
 stream = ExtResource("8_p30em")
 
-[node name="PlayerDieSound" type="AudioStreamPlayer" parent="."]
+[node name="PlayerDieSound" type="AudioStreamPlayer" parent="." unique_id=931567853]
 stream = ExtResource("9_x64l8")
 
-[node name="Player" parent="." instance=ExtResource("1_lp7mr")]
+[node name="StartMenuMusic" type="AudioStreamPlayer" parent="." unique_id=1465272185]
+stream = ExtResource("12_trtic")
+volume_db = -5.0
+
+[node name="GameMusic" type="AudioStreamPlayer" parent="." unique_id=272190282]
+stream = ExtResource("13_ir15t")
+volume_db = -5.0
+
+[node name="Player" parent="." unique_id=1561537378 instance=ExtResource("1_lp7mr")]
+visible = false
 position = Vector2(640, 361)
+
+[connection signal="pressed" from="UI/StartMenu/StartButtons/StartButton" to="UI/StartMenu" method="_on_start_button_pressed"]
+[connection signal="pressed" from="UI/StartMenu/StartButtons/FactButton" to="UI/StartMenu" method="_on_fact_button_pressed"]
+[connection signal="pressed" from="UI/StartMenu/StartButtons/Tutorial" to="UI/StartMenu" method="_on_tutorial_button_pressed"]
+[connection signal="pressed" from="UI/StartMenu/StartButtons/Quit" to="UI/StartMenu" method="_on_quit_pressed"]
+[connection signal="pressed" from="UI/StartMenu/TutorialControl/Back" to="UI/StartMenu" method="_on_back_button_pressed"]
