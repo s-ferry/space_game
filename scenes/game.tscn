@@ -147,6 +147,13 @@ offset_bottom = -109.0
 text = "YOU WIN"
 horizontal_alignment = 1
 
+[node name="RestartButton" parent="UI/VictoryScreen" index="1"]
+offset_left = -139.0
+offset_top = 449.0
+offset_right = 149.0
+offset_bottom = 517.0
+text = "Play again"
+
 [node name="VictorySpeech" type="Label" parent="UI/VictoryScreen" unique_id=803988806]
 layout_mode = 1
 anchors_preset = 8
@@ -166,13 +173,6 @@ text = "Due to your valor, you ensured the safety of the team and brought them a
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 1
-
-[node name="RestartButton" parent="UI/VictoryScreen" index="2"]
-offset_left = -139.0
-offset_top = 449.0
-offset_right = 149.0
-offset_bottom = 517.0
-text = "Play again"
 
 [node name="WinButton" type="Button" parent="UI/VictoryScreen" unique_id=1101449875]
 layout_mode = 1
@@ -351,7 +351,7 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("5_dinhu")
 theme_override_font_sizes/font_size = 28
 theme_override_styles/normal = SubResource("StyleBoxEmpty_trtic")
-text = "            the psyche space craft moves through space 
+text = "the psyche space craft moves through space 
 but has ran into electrical issues. YOU must pilot 
 the shuttle and ensure the team's safety and harvest asteroids while they 
 repair the shuttle to make it back home!"

@@ -111,6 +111,7 @@ func _ready():
 	$UI/StartMenu.tutorial_pressed.connect(_on_start_menu_tutorial_pressed)
 	$UI/StartMenu.fact_pressed.connect(_on_start_menu_fact_pressed)
 	$UI/StartMenu.quit_pressed.connect(_on_start_menu_quit_pressed)
+	$UI/StartMenu.back_pressed.connect(_on_back_pressed)
 
 	timer.timeout.connect(_on_timer_timeout)
 
