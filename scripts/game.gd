@@ -6,6 +6,7 @@ extends Node2D
 @onready var hud = $UI/HUD
 @onready var timer = $Timer
 @onready var game_over_screen = $UI/GameOverScreen
+@onready var victory_screen = $UI/VictoryScreen
 @onready var player_spawn_pos = $PlayerSpawnPos
 @onready var player_spawn_area = $PlayerSpawnPos/PlayerSpawnArea
 @onready var fact_label = $UI/StartMenu/Facts
@@ -117,6 +118,7 @@ func _ready():
 	$UI/StartMenu.visible = true
 	$UI/HUD.visible = false
 	$UI/GameOverScreen.visible = false
+	$UI/VictoryScreen.visible = false
 
 	set_game_active(false)
 
@@ -174,6 +176,7 @@ func _on_player_died():
 		timer.stop()
 		game_started = false
 		set_game_active(false)
+		$GameMusic.stop()
 		await get_tree().create_timer(2).timeout
 		game_over_screen.visible = true
 	else:
@@ -187,5 +190,8 @@ func _on_timer_timeout():
 	game_started = false
 	set_game_active(false)
 
+	timer.stop()
+	$GameMusic.stop()
+	
 	$UI/HUD.hide()
-	$UI/GameOverScreen.show()
+	$UI/VictoryScreen.show()
