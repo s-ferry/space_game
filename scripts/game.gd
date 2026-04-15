@@ -194,5 +194,4 @@ func _on_timer_timeout():
 	timer.stop()
 	$GameMusic.stop()
 	
-	$UI/HUD.hide()
 	$UI/VictoryScreen.show()
