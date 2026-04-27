@@ -63,17 +63,19 @@ func shoot_laser():
 	emit_signal("laser_shot", l)
 
 func die():
-	if alive==true:
+	if alive == true:
 		alive = false
 		sprite.visible = false
 		cshape.set_deferred("disabled", true)
 		emit_signal("died")
-		
 
 func respawn(pos):
-	if alive==false:
+	if alive == false:
 		alive = true
 		global_position = pos
 		velocity = Vector2.ZERO
 		sprite.visible = true
+		cshape.set_deferred("disabled", true)
+
+		await get_tree().create_timer(1.0).timeout
 		cshape.set_deferred("disabled", false)

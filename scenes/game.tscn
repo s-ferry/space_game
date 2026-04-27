@@ -14,6 +14,12 @@
 [ext_resource type="AudioStream" uid="uid://dm570camat62e" path="res://assets/audio/explode.wav" id="9_x64l8"]
 [ext_resource type="AudioStream" uid="uid://b8nypvo06yljn" path="res://assets/audio/purrsahfef-8-bit-space-123218.mp3" id="12_trtic"]
 [ext_resource type="AudioStream" uid="uid://td8xahyyxa1i" path="res://assets/audio/absounds-neon-retro-80s-synthwave-272825.mp3" id="13_ir15t"]
+[ext_resource type="AudioStream" uid="uid://dwbjfs5kg8fq0" path="res://assets/audio/hitslab-national-anthem-usa-319044.mp3" id="14_ir15t"]
+[ext_resource type="AudioStream" uid="uid://d1sm7a3jfjrp8" path="res://assets/audio/xunlang_studio-lonely-planet-517932-[AudioTrimmer.com].mp3" id="15_ca42v"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kvuet"]
+texture = ExtResource("4_kvpfn")
+modulate_color = Color(0.5716493, 0.5716493, 0.57164925, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0tnpc"]
 bg_color = Color(1, 1, 1, 1)
@@ -30,10 +36,6 @@ bg_color = Color(0.37917963, 0.37917987, 0.37917975, 1)
 bg_color = Color(0.6996537, 0.6996534, 0.69965357, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kvpfn"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kvuet"]
-texture = ExtResource("4_kvpfn")
-modulate_color = Color(0.5716493, 0.5716493, 0.57164925, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vtaks"]
 bg_color = Color(1, 1, 1, 1)
@@ -87,9 +89,12 @@ scale_max = 5.0
 [node name="Game" type="Node2D" unique_id=1801750805]
 script = ExtResource("1_ci0lx")
 
-[node name="Timer" type="Timer" parent="." unique_id=410352273]
+[node name="GameTimer" type="Timer" parent="." unique_id=410352273]
 wait_time = 60.0
 one_shot = true
+
+[node name="AsteroidSpawnTimer" type="Timer" parent="." unique_id=1055298187]
+wait_time = 8.0
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=165334224]
 
@@ -110,94 +115,7 @@ theme_override_fonts/font = ExtResource("5_dinhu")
 theme_override_font_sizes/font_size = 45
 text = "Time left: 60"
 
-[node name="GameOverScreen" parent="UI" unique_id=1458280582 instance=ExtResource("3_km7re")]
-visible = false
-
-[node name="RestartButton" parent="UI/GameOverScreen" index="1"]
-offset_top = 447.0
-offset_bottom = 515.0
-
-[node name="RestartButton1" type="Button" parent="UI/GameOverScreen" unique_id=1525252754]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -94.5
-offset_top = 50.0
-offset_right = 94.5
-offset_bottom = 100.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("5_dinhu")
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_0tnpc")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_dinhu")
-theme_override_styles/hover = SubResource("StyleBoxFlat_kvuet")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_kvpfn")
-text = "try again"
-
-[node name="VictoryScreen" parent="UI" unique_id=1068225119 instance=ExtResource("3_km7re")]
-
-[node name="GameOver" parent="UI/VictoryScreen" index="0"]
-offset_top = -208.0
-offset_bottom = -109.0
-text = "YOU WIN"
-horizontal_alignment = 1
-
-[node name="RestartButton" parent="UI/VictoryScreen" index="1"]
-offset_left = -139.0
-offset_top = 449.0
-offset_right = 149.0
-offset_bottom = 517.0
-text = "Play again"
-
-[node name="VictorySpeech" type="Label" parent="UI/VictoryScreen" unique_id=803988806]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -332.0
-offset_top = -53.5
-offset_right = 318.0
-offset_bottom = 117.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("5_dinhu")
-theme_override_font_sizes/font_size = 28
-text = "Due to your valor, you ensured the safety of the team and brought         them all home! Congratulations     Pilot!"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 1
-
-[node name="WinButton" type="Button" parent="UI/VictoryScreen" unique_id=1101449875]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -92.5
-offset_top = 130.0
-offset_right = 92.5
-offset_bottom = 180.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("5_dinhu")
-theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_0tnpc")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_dinhu")
-theme_override_styles/hover = SubResource("StyleBoxFlat_kvuet")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_kvpfn")
-text = "REstart"
-
 [node name="StartMenu" type="Control" parent="UI" unique_id=1678950227]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1280.0
@@ -230,7 +148,7 @@ grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
 theme_override_constants/shadow_offset_y = -3
 theme_override_fonts/font = ExtResource("5_dinhu")
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 59
 text = "Pysche Approach"
 horizontal_alignment = 1
 
@@ -296,6 +214,17 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_kvuet")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_kvpfn")
 text = "Tutorial"
 
+[node name="Credits" type="Button" parent="UI/StartMenu/StartButtons" unique_id=2011294661]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_dinhu")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_kvpfn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dinhu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kvuet")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kvpfn")
+text = "Credits"
+
 [node name="Quit" type="Button" parent="UI/StartMenu/StartButtons" unique_id=1221519762]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -306,6 +235,61 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_dinhu")
 theme_override_styles/hover = SubResource("StyleBoxFlat_kvuet")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_kvpfn")
 text = "Quit"
+
+[node name="DifficultyMenu" type="VBoxContainer" parent="UI/StartMenu" unique_id=586243538]
+visible = false
+z_index = 10
+layout_mode = 0
+offset_left = 497.125
+offset_top = 353.0
+offset_right = 782.125
+offset_bottom = 561.0
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="EasyButton" type="Button" parent="UI/StartMenu/DifficultyMenu" unique_id=137677343]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_dinhu")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_0tnpc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dinhu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kvuet")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kvpfn")
+text = "Easy"
+
+[node name="MediumButton" type="Button" parent="UI/StartMenu/DifficultyMenu" unique_id=1317684168]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_dinhu")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_vtaks")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dinhu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kvuet")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kvpfn")
+text = "Medium"
+
+[node name="HardButton" type="Button" parent="UI/StartMenu/DifficultyMenu" unique_id=1438580962]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_dinhu")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_vtaks")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dinhu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kvuet")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kvpfn")
+text = "Hard"
+
+[node name="Back" type="Button" parent="UI/StartMenu/DifficultyMenu" unique_id=1469017136]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_dinhu")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_kvpfn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dinhu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kvuet")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kvpfn")
+text = "Back"
 
 [node name="TutorialControl" type="Control" parent="UI/StartMenu" unique_id=1681037801]
 visible = false
@@ -327,9 +311,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -273.0
-offset_top = -212.5
+offset_top = -206.5
 offset_right = 273.0
-offset_bottom = -45.5
+offset_bottom = -39.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("5_dinhu")
@@ -344,21 +328,18 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -492.0
-offset_top = -3392.5
+offset_top = -3356.5
 offset_right = 492.0
-offset_bottom = 3444.5
+offset_bottom = 3480.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("5_dinhu")
 theme_override_font_sizes/font_size = 28
 theme_override_styles/normal = SubResource("StyleBoxEmpty_trtic")
-text = "the psyche space craft moves through space 
-but has ran into electrical issues. YOU must pilot 
-the shuttle and ensure the team's safety and harvest asteroids while they 
-repair the shuttle to make it back home!"
+text = "It is the far future! The next-gen Psyche spacecraft moves through space but has run into electrical issues. You must pilot the craft and ensure the team's safety and harvest asteroid materials while the team repairs the craft to make it back home!"
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 3
 
 [node name="Controls" type="Label" parent="UI/StartMenu/TutorialControl" unique_id=1834967161]
 layout_mode = 1
@@ -367,14 +348,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -444.0
-offset_top = 183.0
-offset_right = 444.0
-offset_bottom = 207.0
+offset_left = -552.0
+offset_top = 219.0
+offset_right = 552.0
+offset_bottom = 243.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("5_dinhu")
-text = "Use WASD to pilot PSYCHE, and SPACE BAR to use the mining tool to harvest asteroids!"
+text = "Use WASD to pilot Psyche, and SPACEBAR to use the mining tool to harvest the needed asteroid materials!"
 
 [node name="Back" type="Button" parent="UI/StartMenu/TutorialControl" unique_id=56515381]
 layout_mode = 0
@@ -391,33 +372,222 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_kvuet")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_kvpfn")
 text = "Back"
 
-[node name="BackgroundStarFields" type="Node2D" parent="." unique_id=191290205]
+[node name="CreditsControl" type="Control" parent="UI/StartMenu" unique_id=366848799]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="StarFieldBack" type="GPUParticles2D" parent="BackgroundStarFields" unique_id=493407476]
-z_index = -100
-position = Vector2(1308, 360)
-amount = 1000
-lifetime = 140.0
-preprocess = 280.0
-process_material = SubResource("ParticleProcessMaterial_6ya6y")
+[node name="CreditTitle" type="Label" parent="UI/StartMenu/CreditsControl" unique_id=918529146]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -369.0
+offset_top = -206.5
+offset_right = 369.0
+offset_bottom = -25.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_dinhu")
+theme_override_font_sizes/font_size = 59
+text = "credits!
+"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="StarFieldMiddle" type="GPUParticles2D" parent="BackgroundStarFields" unique_id=453817571]
-z_index = -95
-position = Vector2(1308, 360)
-amount = 250
-lifetime = 140.0
-preprocess = 280.0
-process_material = SubResource("ParticleProcessMaterial_qn0gc")
+[node name="Credits" type="Label" parent="UI/StartMenu/CreditsControl" unique_id=1560236742]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -538.0
+offset_top = -107.5
+offset_right = 538.0
+offset_bottom = 183.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_dinhu")
+theme_override_font_sizes/font_size = 30
+text = "
+a special thanks to the team that helped
+bring this project to life as well as a special thanks
+to Dr. Bowman, and Prof. Fiske for guiding us
+and finally Kaan, pixabay, and audio-trimmer for the 
+online assets that went into the project"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="StarFieldFront" type="GPUParticles2D" parent="BackgroundStarFields" unique_id=315309772]
-z_index = -90
-position = Vector2(1308, 360)
-amount = 30
-lifetime = 140.0
-preprocess = 280.0
-process_material = SubResource("ParticleProcessMaterial_ws6fu")
+[node name="Back" type="Button" parent="UI/StartMenu/CreditsControl" unique_id=223018431]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -138.0
+offset_top = 261.0
+offset_right = 144.0
+offset_bottom = 307.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_dinhu")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_kvpfn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dinhu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kvuet")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kvpfn")
+text = "Back"
 
-[node name="Lasers" type="Node" parent="." unique_id=13772830]
+[node name="VictoryScreen" parent="UI" unique_id=1068225119 instance=ExtResource("3_km7re")]
+visible = false
+
+[node name="GameOver" parent="UI/VictoryScreen" index="0"]
+offset_top = -208.0
+offset_bottom = -109.0
+text = "YOU WIN"
+horizontal_alignment = 1
+
+[node name="RestartButton" parent="UI/VictoryScreen" index="1"]
+offset_left = -139.0
+offset_top = 449.0
+offset_right = 149.0
+offset_bottom = 517.0
+text = "Play again"
+
+[node name="VictorySpeech" type="Label" parent="UI/VictoryScreen" unique_id=803988806]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -332.0
+offset_top = -53.5
+offset_right = 318.0
+offset_bottom = 117.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_dinhu")
+theme_override_font_sizes/font_size = 28
+text = "Due to your valor, you ensured the safety of the team and brought         them all home! Congratulations     Pilot!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="WinButton" type="Button" parent="UI/VictoryScreen" unique_id=1101449875]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.5
+offset_top = 130.0
+offset_right = 92.5
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_dinhu")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_0tnpc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dinhu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kvuet")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kvpfn")
+text = "REstart"
+
+[node name="GameOverScreen" parent="UI" unique_id=1458280582 instance=ExtResource("3_km7re")]
+visible = false
+
+[node name="GameOver" parent="UI/GameOverScreen" index="0"]
+offset_top = -155.0
+offset_bottom = -56.0
+text = "GAME OVER!"
+
+[node name="GameOcerSpeech" type="Label" parent="UI/GameOverScreen" unique_id=458451236]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -342.0
+offset_top = -7.5
+offset_right = 342.0
+offset_bottom = 67.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_dinhu")
+theme_override_font_sizes/font_size = 28
+text = "Head back to the training simulator cadet!
+"
+
+[node name="RestartButton" parent="UI/GameOverScreen" index="2"]
+offset_top = 447.0
+offset_bottom = 515.0
+
+[node name="RestartButton1" type="Button" parent="UI/GameOverScreen" unique_id=1525252754]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = 143.0
+offset_right = 100.0
+offset_bottom = 193.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_dinhu")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_0tnpc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dinhu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kvuet")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kvpfn")
+text = "try again"
+
+[node name="SpawnPoints" type="Node2D" parent="." unique_id=1366722947]
+position = Vector2(640, 360)
+
+[node name="PlayerSpawnPos1" type="Node2D" parent="SpawnPoints" unique_id=1866718823]
+position = Vector2(-27, 6)
+
+[node name="PlayerSpawnArea" parent="SpawnPoints/PlayerSpawnPos1" unique_id=777984680 instance=ExtResource("6_kp4kv")]
+position = Vector2(36, 4)
+
+[node name="PlayerSpawnPos2" type="Node2D" parent="SpawnPoints" unique_id=168943705]
+position = Vector2(521, 208)
+
+[node name="PlayerSpawnArea" parent="SpawnPoints/PlayerSpawnPos2" unique_id=942146185 instance=ExtResource("6_kp4kv")]
+
+[node name="PlayerSpawnPos3" type="Node2D" parent="SpawnPoints" unique_id=625397149]
+position = Vector2(-487, 208)
+
+[node name="PlayerSpawnArea" parent="SpawnPoints/PlayerSpawnPos3" unique_id=1065805655 instance=ExtResource("6_kp4kv")]
+position = Vector2(1, 1)
+
+[node name="PlayerSpawnPos4" type="Node2D" parent="SpawnPoints" unique_id=281642963]
+position = Vector2(455, -167)
+
+[node name="PlayerSpawnArea" parent="SpawnPoints/PlayerSpawnPos4" unique_id=1983485275 instance=ExtResource("6_kp4kv")]
+position = Vector2(-1, 2)
+
+[node name="PlayerSpawnPos5" type="Node2D" parent="SpawnPoints" unique_id=1164159389]
+position = Vector2(-486, -200)
+
+[node name="PlayerSpawnArea" parent="SpawnPoints/PlayerSpawnPos5" unique_id=2013839204 instance=ExtResource("6_kp4kv")]
+position = Vector2(-1, 4)
 
 [node name="Asteroids" type="Node" parent="." unique_id=1378695025]
 
@@ -449,11 +619,33 @@ position = Vector2(180, 230)
 visible = false
 position = Vector2(1111, 337)
 
-[node name="PlayerSpawnPos" type="Node2D" parent="." unique_id=1366722947]
-position = Vector2(640, 360)
+[node name="BackgroundStarFields" type="Node2D" parent="." unique_id=191290205]
 
-[node name="PlayerSpawnArea" parent="PlayerSpawnPos" unique_id=1512443177 instance=ExtResource("6_kp4kv")]
-position = Vector2(36, 4)
+[node name="StarFieldBack" type="GPUParticles2D" parent="BackgroundStarFields" unique_id=493407476]
+z_index = -100
+position = Vector2(1308, 360)
+amount = 1000
+lifetime = 140.0
+preprocess = 280.0
+process_material = SubResource("ParticleProcessMaterial_6ya6y")
+
+[node name="StarFieldMiddle" type="GPUParticles2D" parent="BackgroundStarFields" unique_id=453817571]
+z_index = -95
+position = Vector2(1308, 360)
+amount = 250
+lifetime = 140.0
+preprocess = 280.0
+process_material = SubResource("ParticleProcessMaterial_qn0gc")
+
+[node name="StarFieldFront" type="GPUParticles2D" parent="BackgroundStarFields" unique_id=315309772]
+z_index = -90
+position = Vector2(1308, 360)
+amount = 30
+lifetime = 140.0
+preprocess = 280.0
+process_material = SubResource("ParticleProcessMaterial_ws6fu")
+
+[node name="Lasers" type="Node" parent="." unique_id=13772830]
 
 [node name="LaserSound" type="AudioStreamPlayer" parent="." unique_id=1979342858]
 stream = ExtResource("7_ymdea")
@@ -472,17 +664,31 @@ volume_db = -5.0
 stream = ExtResource("13_ir15t")
 volume_db = -5.0
 
+[node name="WinMusic" type="AudioStreamPlayer" parent="." unique_id=2018340621]
+stream = ExtResource("14_ir15t")
+parameters/looping = true
+
+[node name="Lossmusic" type="AudioStreamPlayer" parent="." unique_id=432171628]
+stream = ExtResource("15_ca42v")
+parameters/looping = true
+
 [node name="Player" parent="." unique_id=1561537378 instance=ExtResource("1_lp7mr")]
 visible = false
 position = Vector2(640, 361)
 
-[connection signal="pressed" from="UI/GameOverScreen/RestartButton1" to="UI/GameOverScreen" method="_on_restart_button_pressed"]
-[connection signal="pressed" from="UI/VictoryScreen/WinButton" to="UI/VictoryScreen" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="UI/StartMenu/StartButtons/StartButton" to="UI/StartMenu" method="_on_start_button_pressed"]
 [connection signal="pressed" from="UI/StartMenu/StartButtons/FactButton" to="UI/StartMenu" method="_on_fact_button_pressed"]
 [connection signal="pressed" from="UI/StartMenu/StartButtons/Tutorial" to="UI/StartMenu" method="_on_tutorial_button_pressed"]
+[connection signal="pressed" from="UI/StartMenu/StartButtons/Credits" to="UI/StartMenu" method="_on_credits_button_pressed"]
 [connection signal="pressed" from="UI/StartMenu/StartButtons/Quit" to="UI/StartMenu" method="_on_quit_pressed"]
+[connection signal="pressed" from="UI/StartMenu/DifficultyMenu/EasyButton" to="UI/StartMenu" method="_on_easy_button_pressed"]
+[connection signal="pressed" from="UI/StartMenu/DifficultyMenu/MediumButton" to="UI/StartMenu" method="_on_medium_button_pressed"]
+[connection signal="pressed" from="UI/StartMenu/DifficultyMenu/HardButton" to="UI/StartMenu" method="_on_hard_button_pressed"]
+[connection signal="pressed" from="UI/StartMenu/DifficultyMenu/Back" to="UI/StartMenu" method="_on_difficulty_back_button_pressed"]
 [connection signal="pressed" from="UI/StartMenu/TutorialControl/Back" to="UI/StartMenu" method="_on_back_button_pressed"]
+[connection signal="pressed" from="UI/StartMenu/CreditsControl/Back" to="UI/StartMenu" method="_on_back_button_pressed"]
+[connection signal="pressed" from="UI/VictoryScreen/WinButton" to="UI/VictoryScreen" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="UI/GameOverScreen/RestartButton1" to="UI/GameOverScreen" method="_on_restart_button_pressed"]
 
-[editable path="UI/GameOverScreen"]
 [editable path="UI/VictoryScreen"]
+[editable path="UI/GameOverScreen"]
