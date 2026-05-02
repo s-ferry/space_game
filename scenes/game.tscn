@@ -513,6 +513,10 @@ offset_top = -155.0
 offset_bottom = -56.0
 text = "GAME OVER!"
 
+[node name="RestartButton" parent="UI/GameOverScreen" index="1"]
+offset_top = 447.0
+offset_bottom = 515.0
+
 [node name="GameOcerSpeech" type="Label" parent="UI/GameOverScreen" unique_id=458451236]
 layout_mode = 1
 anchors_preset = 8
@@ -530,10 +534,6 @@ theme_override_fonts/font = ExtResource("5_dinhu")
 theme_override_font_sizes/font_size = 28
 text = "Head back to the training simulator cadet!
 "
-
-[node name="RestartButton" parent="UI/GameOverScreen" index="2"]
-offset_top = 447.0
-offset_bottom = 515.0
 
 [node name="RestartButton1" type="Button" parent="UI/GameOverScreen" unique_id=1525252754]
 layout_mode = 1
